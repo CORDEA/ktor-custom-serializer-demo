@@ -18,18 +18,16 @@ repositories {
 dependencies {
     testImplementation(kotlin("test-junit"))
     implementation("io.ktor:ktor-server-netty:1.4.0")
-    implementation("io.ktor:ktor-html-builder:1.4.0")
-    implementation("org.jetbrains.kotlinx:kotlinx-html-jvm:0.7.2")
 }
 
 tasks.test {
     useJUnit()
 }
 
-tasks.withType<KotlinCompile>() {
+tasks.withType<KotlinCompile> {
     kotlinOptions.jvmTarget = "1.8"
 }
 
 application {
-    mainClassName = "ServerKt"
+    mainClass.set("MainKt")
 }
