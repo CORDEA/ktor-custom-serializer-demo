@@ -15,6 +15,7 @@ repositories {
 dependencies {
     testImplementation(kotlin("test-junit"))
     implementation("io.ktor:ktor-server-netty:1.4.0")
+    implementation(project(":common"))
 }
 
 tasks.test {
