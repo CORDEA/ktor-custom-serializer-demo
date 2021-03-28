@@ -1,6 +1,9 @@
 package csv
 
+import io.ktor.client.*
+import io.ktor.client.features.*
 import io.ktor.http.*
+import io.ktor.util.*
 
 class CsvFeature(
     private val serializer: CsvSerializer,
@@ -21,4 +24,18 @@ class CsvFeature(
 
     fun canHandle(contentType: ContentType) =
         acceptContentTypes.any { contentType.match(it) }
+
+    companion object Feature : HttpClientFeature<Config, CsvFeature> {
+        override val key: AttributeKey<CsvFeature> = AttributeKey("csv")
+
+        override fun install(feature: CsvFeature, scope: HttpClient) {
+            // TODO
+        }
+
+        override fun prepare(block: Config.() -> Unit): CsvFeature {
+            val config = Config().apply(block)
+            val serializer = config.serializer ?: CsvSerializer()
+            return CsvFeature(serializer, config.acceptContentTypes)
+        }
+    }
 }
