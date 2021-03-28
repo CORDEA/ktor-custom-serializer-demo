@@ -5,9 +5,6 @@ plugins {
     application
 }
 
-group = "jp.cordea"
-version = "1.0-SNAPSHOT"
-
 repositories {
     jcenter()
     mavenCentral()
